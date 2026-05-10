@@ -1,0 +1,6 @@
+{
+  "name": "Armstrong Garage",
+  "description": "A comprehensive workshop management suite for Armstrong Garage, featuring inventory tracking, POS, financial reports, and offline-first data sync.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

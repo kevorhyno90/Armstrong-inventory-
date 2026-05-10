@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "InventoryItem": {
+      "title": "Inventory Item",
+      "description": "A motorcycle spare part in stock",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "modelCompatibility": { "type": "array", "items": { "type": "string" } },
+        "purchasePrice": { "type": "number" },
+        "sellingPrice": { "type": "number" },
+        "quantity": { "type": "number" },
+        "minStockLevel": { "type": "number" },
+        "location": { "type": "string" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["name", "quantity", "sellingPrice"]
+    },
+    "Sale": {
+      "title": "Sale Record",
+      "description": "A transaction recording motor spare sales",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "items": { "type": "array" },
+        "totalAmount": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["CASH", "MOBILE_MONEY", "CARD", "CREDIT"] },
+        "timestamp": { "type": "number" },
+        "processedBy": { "type": "string" }
+      },
+      "required": ["items", "totalAmount", "timestamp"]
+    },
+    "Reminder": {
+      "title": "Reminder",
+      "description": "A task or notification for the shop manager",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "dueDate": { "type": "number" },
+        "type": { "type": "string", "enum": ["STOCK", "MAINTENANCE", "CUSTOMER", "GENERAL"] },
+        "status": { "type": "string", "enum": ["PENDING", "COMPLETED", "DISMISSED"] },
+        "relatedEntityId": { "type": "string" }
+      },
+      "required": ["title", "dueDate", "status"]
+    }
+  },
+  "firestore": {
+    "inventory": {
+      "schema": "InventoryItem",
+      "description": "Current stock of spare parts"
+    },
+    "sales": {
+      "schema": "Sale",
+      "description": "Sales history"
+    },
+    "reminders": {
+      "schema": "Reminder",
+      "description": "Pending and past reminders"
+    }
+  }
+}
